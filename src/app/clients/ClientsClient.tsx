@@ -70,9 +70,9 @@ export default function ClientsClient() {
       {/* ═══════════════════════════════════════════════════════
           COVER — Specification Header Block
       ═══════════════════════════════════════════════════════ */}
-      <section className="pt-8 sm:pt-10 pb-8 px-4 sm:px-6 md:px-10 relative border-b border-[#1B1B18]/8">
-        <div className="flex justify-between items-center flex-wrap gap-4 mb-6">
-          <span className="text-[11px] font-semibold text-[#8A8E82] uppercase tracking-wider">
+      <section className="pt-6 sm:pt-10 pb-6 sm:pb-8 px-4 sm:px-6 md:px-10 relative border-b border-[#1B1B18]/8">
+        <div className="flex justify-between items-center flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <span className="text-[10px] sm:text-[11px] font-semibold text-[#8A8E82] uppercase tracking-wider">
             SPECIFICATION REF: TG-2025 // SEC-04 // WORKFORCE DEPLOYMENT PROTOCOL
           </span>
           <LiveOperationalSignal text="CLIENT REQUISITION DESK ACTIVE" />
@@ -82,12 +82,12 @@ export default function ClientsClient() {
           ref={wordmarkRef}
           className="transition-transform duration-100 ease-out will-change-transform"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#1B1B18] font-[var(--font-display)] leading-[1.05] mb-4">
+          <h1 className="text-[clamp(2.2rem,7.5vw,5.5rem)] font-bold tracking-tight text-[#1B1B18] font-[var(--font-display)] leading-[1.05] mb-3 sm:mb-4">
             For <span className="text-[#5C8200]">Clients</span>.
           </h1>
         </div>
 
-        <div className="mt-4 flex items-center gap-4 flex-wrap text-xs sm:text-sm font-semibold text-[#8A8E82]">
+        <div className="mt-3 sm:mt-4 flex items-center gap-3 sm:gap-4 flex-wrap text-xs sm:text-sm font-semibold text-[#8A8E82]">
           <span className="inline-flex items-center gap-1.5 text-[#5C8200] bg-[#DEEBC9] px-3 py-1 rounded-full uppercase tracking-wider text-xs">
             <Building2 className="w-3.5 h-3.5" />
             Tier-1 Contractor Solutions

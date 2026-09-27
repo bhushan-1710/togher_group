@@ -41,35 +41,35 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-[#1B1B18] text-white rounded-b-[24px] sm:rounded-b-[32px] mt-12 sm:mt-16 overflow-hidden">
-      <div className="max-w-[1480px] mx-auto px-6 sm:px-8 md:px-12 pt-14 pb-10">
+    <footer className="w-full bg-[#1B1B18] text-white rounded-b-none sm:rounded-b-[28px] md:rounded-b-[32px] mt-10 sm:mt-16 overflow-hidden">
+      <div className="max-w-[1480px] mx-auto px-5 sm:px-8 md:px-12 pt-10 sm:pt-14 pb-8 sm:pb-10 pb-[calc(2rem+env(safe-area-inset-bottom,0px))]">
         
         {/* Top CTA Row */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 pb-12 border-b border-white/10">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 sm:gap-8 pb-8 sm:pb-12 border-b border-white/10">
           <div>
-            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#C7E36B] mb-2">
+            <span className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#C7E36B] mb-2">
               <span className="w-2 h-2 rounded-full bg-[#C7E36B] animate-pulse" />
               International Recruitment Network
             </span>
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+            <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-snug">
               Ready to mobilise verified engineering leadership?
             </h3>
-            <p className="text-[#8A8E82] text-sm sm:text-base mt-2 max-w-xl">
+            <p className="text-[#8A8E82] text-xs sm:text-base mt-2 max-w-xl leading-relaxed">
               From individual MEP project leaders to 40-person self-sufficient trades rotations across Ireland, the UK, Europe, the USA and Australia.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 w-full sm:w-auto">
             <Link
               href="/contact"
-              className="btn-pill bg-[#C7E36B] text-[#1B1B18] border-none font-semibold px-6 py-3 text-sm hover:bg-[#bce055]"
+              className="btn-pill bg-[#C7E36B] text-[#1B1B18] border-none font-semibold px-5 sm:px-6 py-3 text-xs sm:text-sm hover:bg-[#bce055] w-full xs:w-auto"
             >
               <span>Dispatch Requisition</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
             <Link
               href="/vacancies"
-              className="btn-pill bg-white/10 text-white border border-white/15 px-6 py-3 text-sm hover:bg-white/20"
+              className="btn-pill bg-white/10 text-white border border-white/15 px-5 sm:px-6 py-3 text-xs sm:text-sm hover:bg-white/20 w-full xs:w-auto"
             >
               <span>Explore Roles</span>
               <ArrowUpRight className="w-4 h-4" />

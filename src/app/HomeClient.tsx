@@ -56,7 +56,7 @@ function useCountUp(target: number, duration: number = 1200, active: boolean = t
 /* ─── STAGGERED CHARACTER COMPONENT (Section 3 & 6.1) ─── */
 function StaggeredWord({ text, delayOffset = 0.3 }: { text: string; delayOffset?: number }) {
   return (
-    <span className="inline-block whitespace-nowrap">
+    <span className="inline-block break-words">
       {text.split('').map((char, i) => (
         <span
           key={i}
@@ -75,39 +75,39 @@ function StaggeredWord({ text, delayOffset = 0.3 }: { text: string; delayOffset?
 /* ─── CIRCULAR PROGRESS RING (Section 5.6) ─── */
 function CircularProgress({ percentage, label }: { percentage: number; label: string }) {
   const animatedPercentage = useCountUp(percentage, 1400);
-  const radius = 38;
+  const radius = 34;
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (animatedPercentage / 100) * circumference;
 
   return (
-    <div className="flex flex-col items-center bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-lg border border-[#1B1B18]/10 text-center">
-      <div className="relative w-20 h-20 flex items-center justify-center">
-        <svg className="w-full h-full -rotate-90" viewBox="0 0 96 96">
+    <div className="flex flex-col items-center bg-white/95 backdrop-blur-md p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl shadow-lg border border-[#1B1B18]/10 text-center">
+      <div className="relative w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center">
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 88 88">
           <circle
-            cx="48"
-            cy="48"
+            cx="44"
+            cy="44"
             r={radius}
             className="stroke-[#E3E6DC]"
-            strokeWidth="7"
+            strokeWidth="6"
             fill="transparent"
           />
           <circle
-            cx="48"
-            cy="48"
+            cx="44"
+            cy="44"
             r={radius}
             className="stroke-[#C7E36B] transition-all duration-300"
-            strokeWidth="7"
+            strokeWidth="6"
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
             fill="transparent"
           />
         </svg>
-        <span className="absolute text-lg font-bold text-[#1B1B18] font-[var(--font-display)]">
+        <span className="absolute text-sm sm:text-lg font-bold text-[#1B1B18] font-[var(--font-display)]">
           {animatedPercentage}%
         </span>
       </div>
-      <span className="text-[11px] font-semibold text-[#8A8E82] uppercase tracking-wider mt-1.5 max-w-[90px] leading-tight">
+      <span className="text-[9px] sm:text-[11px] font-semibold text-[#8A8E82] uppercase tracking-wider mt-1 sm:mt-1.5 max-w-[80px] sm:max-w-[90px] leading-tight">
         {label}
       </span>
     </div>
@@ -117,7 +117,7 @@ function CircularProgress({ percentage, label }: { percentage: number; label: st
 /* ─── ROTATING VERIFICATION STAMP / SEAL (Section 5.6) ─── */
 function VerificationSeal() {
   return (
-    <div className="relative w-24 h-24 flex items-center justify-center">
+    <div className="relative w-18 h-18 sm:w-24 sm:h-24 flex items-center justify-center">
       {/* Outer rotating text ring */}
       <div className="absolute inset-0 animate-spin-slow">
         <svg viewBox="0 0 100 100" className="w-full h-full">
@@ -134,8 +134,8 @@ function VerificationSeal() {
         </svg>
       </div>
       {/* Center badge */}
-      <div className="w-12 h-12 rounded-full bg-[#1B1B18] text-[#C7E36B] flex items-center justify-center shadow-md">
-        <ShieldCheck className="w-6 h-6" />
+      <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-[#1B1B18] text-[#C7E36B] flex items-center justify-center shadow-md">
+        <ShieldCheck className="w-4 h-4 sm:w-6 sm:h-6" />
       </div>
     </div>
   );
@@ -287,20 +287,20 @@ export default function HomeClient() {
           Left ~45%: logo/nav-left, eyebrow, headline with 2 accents + staggered reveal, subcopy, two pill buttons, bottom proof.
           Right ~55%: full-bleed photo, overlaid nav/status pills, floating "team" card.
           ======================================================== */}
-      <section className="px-4 sm:px-6 md:px-10 pt-4 sm:pt-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-stretch">
+      <section className="px-4 sm:px-6 md:px-10 pt-3 sm:pt-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* Left Column (~45% / 5.5 cols) */}
-          <div className="lg:col-span-6 flex flex-col justify-between py-4 sm:py-6 lg:pr-4">
+          <div className="lg:col-span-6 flex flex-col justify-between py-2 sm:py-6 lg:pr-4">
             <div>
               {/* Eyebrow badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DEEBC9] text-[#2F4500] text-xs font-semibold tracking-wider uppercase mb-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DEEBC9] text-[#2F4500] text-[11px] sm:text-xs font-semibold tracking-wider uppercase mb-4 sm:mb-5">
                 <span className="w-2 h-2 rounded-full bg-[#5C8200] animate-pulse" />
                 <span>International Recruitment Partner</span>
               </div>
 
               {/* Headline with 2-accent colors & staggered character reveal */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold text-[#1B1B18] tracking-tight leading-[1.1] mb-5">
+              <h1 className="text-[clamp(1.85rem,6.5vw,3.25rem)] font-bold text-[#1B1B18] tracking-tight leading-[1.12] mb-4 sm:mb-5">
                 Supplying{' '}
                 <span className="text-[#5C8200]">expert leaders</span>{' '}
                 and specialist trades for global{' '}
@@ -311,15 +311,15 @@ export default function HomeClient() {
               </h1>
 
               {/* Subcopy */}
-              <p className="text-base sm:text-lg text-[#8A8E82] font-normal leading-relaxed mb-8 max-w-xl">
+              <p className="text-sm sm:text-base md:text-lg text-[#8A8E82] font-normal leading-relaxed mb-6 sm:mb-8 max-w-xl">
                 Togher Group connects Tier-1 construction contractors with verified engineering management professionals and self-sufficient trades across Ireland, the UK, Europe, the USA and Australia.
               </p>
 
               {/* Two Pill Buttons (Section 5.1) */}
-              <div className="flex flex-wrap items-center gap-3.5 mb-10">
+              <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-3.5 mb-8 sm:mb-10">
                 <Link
                   href="/contact"
-                  className="btn-pill btn-pill-dark text-sm sm:text-base py-3 px-6 shadow-md"
+                  className="btn-pill btn-pill-dark text-sm sm:text-base py-3 px-6 shadow-md w-full xs:w-auto"
                 >
                   <span>Deploy Workforce</span>
                   <ArrowUpRight className="w-4 h-4 text-[#C7E36B]" />
@@ -327,7 +327,7 @@ export default function HomeClient() {
 
                 <Link
                   href="/vacancies"
-                  className="btn-pill btn-pill-white text-sm sm:text-base py-3 px-6"
+                  className="btn-pill btn-pill-white text-sm sm:text-base py-3 px-6 w-full xs:w-auto"
                 >
                   <span>Explore Vacancies</span>
                   <ChevronRight className="w-4 h-4 text-[#8A8E82]" />
@@ -336,28 +336,28 @@ export default function HomeClient() {
             </div>
 
             {/* Bottom Proof Metric Row */}
-            <div className="pt-6 border-t border-[#1B1B18]/10 grid grid-cols-3 gap-4">
+            <div className="pt-4 sm:pt-6 border-t border-[#1B1B18]/10 grid grid-cols-3 gap-2 sm:gap-4">
               <div>
-                <span className="block text-xl sm:text-2xl font-extrabold text-[#1B1B18] font-[var(--font-display)]">
+                <span className="block text-lg sm:text-2xl font-extrabold text-[#1B1B18] font-[var(--font-display)]">
                   48h
                 </span>
-                <span className="text-[11px] sm:text-xs text-[#8A8E82] font-medium uppercase tracking-wider">
+                <span className="text-[10px] sm:text-xs text-[#8A8E82] font-medium uppercase tracking-wider block">
                   Rapid Dispatch
                 </span>
               </div>
               <div>
-                <span className="block text-xl sm:text-2xl font-extrabold text-[#1B1B18] font-[var(--font-display)]">
+                <span className="block text-lg sm:text-2xl font-extrabold text-[#1B1B18] font-[var(--font-display)]">
                   100%
                 </span>
-                <span className="text-[11px] sm:text-xs text-[#8A8E82] font-medium uppercase tracking-wider">
+                <span className="text-[10px] sm:text-xs text-[#8A8E82] font-medium uppercase tracking-wider block">
                   Vetted Compliance
                 </span>
               </div>
               <div>
-                <span className="block text-xl sm:text-2xl font-extrabold text-[#1B1B18] font-[var(--font-display)]">
+                <span className="block text-lg sm:text-2xl font-extrabold text-[#1B1B18] font-[var(--font-display)]">
                   5 Regions
                 </span>
-                <span className="text-[11px] sm:text-xs text-[#8A8E82] font-medium uppercase tracking-wider">
+                <span className="text-[10px] sm:text-xs text-[#8A8E82] font-medium uppercase tracking-wider block">
                   IE · UK · EU · US · AU
                 </span>
               </div>
@@ -366,7 +366,7 @@ export default function HomeClient() {
           </div>
 
           {/* Right Column (~55% / 6.5 cols): Full-bleed photo + overlaid pills & Pro Team card */}
-          <div className="lg:col-span-6 relative min-h-[420px] sm:min-h-[500px] lg:min-h-[580px] rounded-[24px] sm:rounded-[28px] overflow-hidden shadow-inner group">
+          <div className="lg:col-span-6 relative min-h-[380px] sm:min-h-[480px] lg:min-h-[580px] rounded-[22px] sm:rounded-[28px] overflow-hidden shadow-inner group">
             <Image
               src="/images/exhibit-cantilever-concrete.jpg"
               alt="Tiered cantilevered reinforced concrete structural ribs — Togher Group delivery"
@@ -376,38 +376,38 @@ export default function HomeClient() {
               className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
             {/* Subtle organic gradient tint */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-black/30 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-black/30 pointer-events-none" />
 
             {/* Overlaid Top-Right Status Pills (Section 2) */}
-            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex flex-col sm:flex-row items-end sm:items-center gap-2">
-              <div className="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-md border border-[#1B1B18]/10 flex items-center gap-2 text-xs font-semibold text-[#1B1B18]">
+            <div className="absolute top-3 right-3 sm:top-6 sm:right-6 flex flex-col sm:flex-row items-end sm:items-center gap-2">
+              <div className="bg-white/95 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-md border border-[#1B1B18]/10 flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-[#1B1B18]">
                 <span className="w-2 h-2 rounded-full bg-[#C7E36B] animate-pulse" />
                 <span>Active Hubs: Dublin · London · Frankfurt</span>
               </div>
             </div>
 
             {/* Overlaid Bottom-Left Tag */}
-            <div className="absolute bottom-6 left-6 hidden sm:block">
+            <div className="absolute bottom-6 left-6 hidden lg:block">
               <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-medium border border-white/15 tracking-wide">
                 Dublin Docklands Commercial Superstructure
               </span>
             </div>
 
             {/* Floating Info Card ("Pro Team" Style per Section 5.2) */}
-            <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur-md p-4 sm:p-5 rounded-[20px] shadow-2xl border border-[#1B1B18]/10 max-w-[280px] sm:max-w-[320px] animate-in fade-in zoom-in-95 duration-500">
-              <div className="flex items-center gap-3 mb-2.5">
+            <div className="absolute bottom-3 right-3 left-3 sm:left-auto sm:bottom-6 sm:right-6 bg-white/95 backdrop-blur-md p-3.5 sm:p-5 rounded-[18px] sm:rounded-[20px] shadow-2xl border border-[#1B1B18]/10 max-w-full sm:max-w-[320px] animate-in fade-in zoom-in-95 duration-500">
+              <div className="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-2.5">
                 {/* Stacked avatar cluster */}
-                <div className="flex -space-x-2">
-                  <div className="w-8 h-8 rounded-full bg-[#2F4500] text-[#C7E36B] font-bold text-xs flex items-center justify-center border-2 border-white shadow-xs">
+                <div className="flex -space-x-1.5 sm:-space-x-2">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#2F4500] text-[#C7E36B] font-bold text-[10px] sm:text-xs flex items-center justify-center border-2 border-white shadow-xs">
                     ST
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-[#523BA8] text-white font-bold text-xs flex items-center justify-center border-2 border-white shadow-xs">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#523BA8] text-white font-bold text-[10px] sm:text-xs flex items-center justify-center border-2 border-white shadow-xs">
                     PM
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-[#1B1B18] text-[#C7E36B] font-bold text-xs flex items-center justify-center border-2 border-white shadow-xs">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#1B1B18] text-[#C7E36B] font-bold text-[10px] sm:text-xs flex items-center justify-center border-2 border-white shadow-xs">
                     QS
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-[#DEEBC9] text-[#2F4500] font-bold text-xs flex items-center justify-center border-2 border-white shadow-xs">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#DEEBC9] text-[#2F4500] font-bold text-[10px] sm:text-xs flex items-center justify-center border-2 border-white shadow-xs">
                     +4k
                   </div>
                 </div>
@@ -421,7 +421,7 @@ export default function HomeClient() {
                   </span>
                 </div>
               </div>
-              <p className="text-[12px] text-[#8A8E82] leading-tight font-normal">
+              <p className="text-[11px] sm:text-[12px] text-[#8A8E82] leading-tight font-normal">
                 Direct deployment of senior engineers, commercial leads and site rotations on critical path deadlines.
               </p>
             </div>
@@ -498,7 +498,7 @@ export default function HomeClient() {
           </div>
 
           {/* Card 2: Floating Tag-Cloud / Keyword Pills (Section 5.4) */}
-          <div className="relative h-[360px] sm:h-[400px] rounded-[24px] bg-[#DEEBC9] p-6 sm:p-7 flex flex-col justify-between shadow-md border border-[#C7E36B]/40 overflow-hidden">
+          <div className="relative min-h-[380px] sm:h-[400px] rounded-[24px] bg-[#DEEBC9] p-5 sm:p-7 flex flex-col justify-between shadow-md border border-[#C7E36B]/40 overflow-hidden">
             
             {/* Top static heading & button */}
             <div className="text-center z-10">
@@ -511,7 +511,7 @@ export default function HomeClient() {
               <div className="mt-3">
                 <Link
                   href="/vacancies"
-                  className="btn-pill btn-pill-dark text-xs py-2 px-4 shadow-sm inline-flex"
+                  className="btn-pill btn-pill-dark text-xs py-2 px-4 shadow-sm inline-flex min-h-[40px]"
                 >
                   <span>Explore Vacancies</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#C7E36B]" />
@@ -519,8 +519,33 @@ export default function HomeClient() {
               </div>
             </div>
 
-            {/* Drifting zero-gravity keyword pills (Section 5.4) */}
-            <div className="relative flex-1 w-full my-2 flex items-center justify-center overflow-hidden">
+            {/* Mobile Tag Cluster (Clean flex-wrap layout preventing overlapping) */}
+            <div className="md:hidden flex flex-wrap gap-2 justify-center py-4 z-10">
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#C7E36B] text-[#1B1B18] shadow-xs border border-[#1B1B18]/10 animate-float-a">
+                Senior Project Managers
+              </span>
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#B9AEF0] text-[#1B1B18] shadow-xs border border-[#1B1B18]/10 animate-float-b">
+                Formwork Carpenters
+              </span>
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-[#1B1B18] shadow-xs border border-[#1B1B18]/10 animate-float-c">
+                Commercial Directors
+              </span>
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#C7E36B] text-[#1B1B18] shadow-xs border border-[#1B1B18]/10 animate-float-d">
+                MEP Coordinators
+              </span>
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#B9AEF0] text-[#1B1B18] shadow-xs border border-[#1B1B18]/10 animate-float-b">
+                Steel Fixers
+              </span>
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white text-[#1B1B18] shadow-xs border border-[#1B1B18]/10 animate-float-a">
+                BIM 3D Modellers
+              </span>
+              <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#C7E36B] text-[#1B1B18] shadow-xs border border-[#1B1B18]/10 animate-float-c">
+                Posted Worker A1
+              </span>
+            </div>
+
+            {/* Desktop Drifting zero-gravity keyword pills (Section 5.4) */}
+            <div className="hidden md:flex relative flex-1 w-full my-2 items-center justify-center overflow-hidden">
               {/* Tag 1 */}
               <div className="absolute top-1 left-2 animate-float-a">
                 <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#C7E36B] text-[#1B1B18] shadow-sm border border-[#1B1B18]/10 inline-block">
@@ -541,7 +566,7 @@ export default function HomeClient() {
               </div>
               {/* Tag 4 */}
               <div className="absolute top-16 right-4 animate-float-d">
-                <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#C7E36B] text-[#1B1B18] shadow-sm border border-[#1B1B18]/10 inline-block">
+                <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-[#C7E36B] text-[#1B1B18] shadow-sm border border-[#1B1B18]/10 inline-block">
                   MEP Coordinators
                 </span>
               </div>
@@ -572,7 +597,7 @@ export default function HomeClient() {
           </div>
 
           {/* Card 3: Plain Photo Card with Floating Data Chip */}
-          <div className="relative h-[360px] sm:h-[400px] rounded-[24px] overflow-hidden p-6 sm:p-7 flex flex-col justify-between text-white shadow-md group">
+          <div className="relative min-h-[380px] sm:h-[400px] rounded-[24px] overflow-hidden p-5 sm:p-7 flex flex-col justify-between text-white shadow-md group">
             <Image
               src="/images/exhibit-tower-crane.jpg"
               alt="Heavy construction tower crane against sky"
@@ -592,7 +617,7 @@ export default function HomeClient() {
             </div>
 
             {/* Overlaid Floating Chip */}
-            <div className="relative z-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl text-[#1B1B18] border border-white/20">
+            <div className="relative z-10 bg-white/95 backdrop-blur-md p-3.5 sm:p-4 rounded-2xl shadow-xl text-[#1B1B18] border border-white/20">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-bold uppercase tracking-wider text-[#5C8200]">
                   Critical Path SLA
@@ -615,9 +640,9 @@ export default function HomeClient() {
           Full-width strip rotated ~2–3° off horizontal, lavender fill (#B9AEF0),
           infinite auto-scrolling line separated by ⟲ rotating icons.
           ======================================================== */}
-      <div className="relative py-8 overflow-hidden my-4 select-none">
-        <div className="w-full -rotate-2 scale-105 bg-[#B9AEF0] py-3.5 shadow-lg border-y border-[#1B1B18]/10 overflow-hidden">
-          <div className="animate-marquee-strip flex items-center gap-8 whitespace-nowrap text-sm sm:text-base font-extrabold uppercase tracking-[0.14em] text-[#1B1B18]">
+      <div className="relative py-6 sm:py-8 overflow-hidden my-2 sm:my-4 select-none w-full max-w-full">
+        <div className="w-full -rotate-1 sm:-rotate-2 scale-102 sm:scale-105 bg-[#B9AEF0] py-3 sm:py-3.5 shadow-lg border-y border-[#1B1B18]/10 overflow-hidden">
+          <div className="animate-marquee-strip flex items-center gap-6 sm:gap-8 whitespace-nowrap text-xs sm:text-base font-extrabold uppercase tracking-[0.14em] text-[#1B1B18]">
             {Array.from({ length: 4 }).map((_, idx) => (
               <div key={idx} className="flex items-center gap-8">
                 <span>TIER-1 RECRUITMENT PARTNER</span>
@@ -715,7 +740,7 @@ export default function HomeClient() {
           role="tabpanel"
           id={`panel-${serviceCards[activeTab].id}`}
           aria-labelledby={`tab-${serviceCards[activeTab].id}`}
-          className="relative rounded-[28px] sm:rounded-[32px] bg-[#DEEBC9] border border-[#C7E36B]/60 p-6 sm:p-10 lg:p-12 shadow-lg transition-all duration-500 overflow-hidden"
+          className="relative rounded-[22px] sm:rounded-[32px] bg-[#DEEBC9] border border-[#C7E36B]/60 p-5 sm:p-10 lg:p-12 shadow-lg transition-all duration-500 overflow-hidden"
         >
           
           {/* Subtle background decoration */}
@@ -726,26 +751,26 @@ export default function HomeClient() {
             return (
               <div
                 key={activeCard.id}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 animate-in fade-in duration-300"
+                className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center relative z-10 animate-in fade-in duration-300"
               >
                 {/* Left Side: Pill label + H2 + description + dot pagination */}
                 <div className="lg:col-span-6 flex flex-col justify-between">
                   <div>
                     {/* Eyebrow Pill */}
-                    <span className="inline-block px-3 py-1 rounded-full bg-white/90 text-[#2F4500] text-xs font-bold tracking-wider uppercase mb-4 shadow-2xs">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white/90 text-[#2F4500] text-xs font-bold tracking-wider uppercase mb-3 sm:mb-4 shadow-2xs">
                       {activeCard.eyebrow}
                     </span>
 
-                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1B1B18] tracking-tight leading-tight mb-4">
+                    <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold text-[#1B1B18] tracking-tight leading-tight mb-3 sm:mb-4">
                       {activeCard.title}
                     </h3>
 
-                    <p className="text-sm sm:text-base text-[#1B1B18]/75 leading-relaxed mb-6">
+                    <p className="text-sm sm:text-base text-[#1B1B18]/75 leading-relaxed mb-5 sm:mb-6">
                       {activeCard.description}
                     </p>
 
                     {/* Bullet Points */}
-                    <ul className="space-y-2.5 mb-8">
+                    <ul className="space-y-2 sm:space-y-2.5 mb-6 sm:mb-8">
                       {activeCard.bulletPoints.map((item, i) => (
                         <li key={i} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-[#1B1B18]">
                           <span className="w-5 h-5 rounded-full bg-white flex items-center justify-center text-[#5C8200] shadow-2xs shrink-0">
@@ -757,13 +782,13 @@ export default function HomeClient() {
                     </ul>
 
                     {/* Metric Quick Stats */}
-                    <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-white/80 border border-white/60 mb-8 shadow-xs">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-3 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/80 border border-white/60 mb-6 sm:mb-8 shadow-xs">
                       {activeCard.metrics.map((m, idx) => (
                         <div key={idx} className="text-center sm:text-left">
-                          <span className="block text-lg sm:text-xl font-extrabold text-[#1B1B18] font-[var(--font-display)]">
+                          <span className="block text-base sm:text-xl font-extrabold text-[#1B1B18] font-[var(--font-display)]">
                             {m.value}
                           </span>
-                          <span className="text-[10px] sm:text-xs text-[#8A8E82] font-semibold uppercase">
+                          <span className="text-[9px] sm:text-xs text-[#8A8E82] font-semibold uppercase block leading-tight">
                             {m.label}
                           </span>
                         </div>
@@ -771,17 +796,17 @@ export default function HomeClient() {
                     </div>
 
                     {/* Action Pill Button */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4">
                       <Link
                         href={activeCard.href}
-                        className="btn-pill btn-pill-dark text-sm py-3 px-6 shadow-md"
+                        className="btn-pill btn-pill-dark text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 shadow-md w-full xs:w-auto"
                       >
                         <span>Explore Full Scope</span>
                         <ArrowRight className="w-4 h-4 text-[#C7E36B]" />
                       </Link>
                       <Link
                         href="/contact"
-                        className="btn-pill btn-pill-white text-sm py-3 px-5"
+                        className="btn-pill btn-pill-white text-xs sm:text-sm py-2.5 sm:py-3 px-4 sm:px-5 w-full xs:w-auto"
                       >
                         <span>Requisition Talent</span>
                       </Link>
@@ -789,7 +814,7 @@ export default function HomeClient() {
                   </div>
 
                   {/* Left-edge vertical dot pagination (Section 5.6) */}
-                  <div className="flex items-center gap-2.5 mt-8 pt-6 border-t border-[#1B1B18]/10">
+                  <div className="flex items-center gap-2.5 mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[#1B1B18]/10">
                     <span className="text-xs font-bold text-[#8A8E82] uppercase tracking-wider mr-2">
                       Folder Tab {activeTab + 1} of {serviceCards.length}
                     </span>
@@ -811,7 +836,7 @@ export default function HomeClient() {
                 </div>
 
                 {/* Right Side: Photo tile with floating data chips overlaid */}
-                <div className="lg:col-span-6 relative min-h-[420px] sm:min-h-[500px] rounded-[24px] overflow-hidden shadow-2xl border-4 border-white group">
+                <div className="lg:col-span-6 relative min-h-[380px] sm:min-h-[500px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-2xl border-2 sm:border-4 border-white group">
                   <Image
                     src={activeCard.image}
                     alt={activeCard.title}
@@ -822,7 +847,7 @@ export default function HomeClient() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
                   {/* 1. Circular progress ring with animated count-up (Section 5.6) */}
-                  <div className="absolute top-4 left-4 z-20 animate-in fade-in zoom-in-95 duration-500">
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 animate-in fade-in zoom-in-95 duration-500">
                     <CircularProgress
                       percentage={activeCard.percentage}
                       label={activeCard.percentageLabel}
@@ -830,12 +855,12 @@ export default function HomeClient() {
                   </div>
 
                   {/* 2. Rotating Seal / Verification Stamp near corner (Section 5.6) */}
-                  <div className="absolute top-4 right-4 z-20">
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20">
                     <VerificationSeal />
                   </div>
 
-                  {/* 3. Scattered free-floating pill badges (Section 5.6) */}
-                  <div className="absolute bottom-20 left-4 z-20">
+                  {/* 3. Scattered free-floating pill badge (hidden on smallest screens to prevent overlap with Why Us card) */}
+                  <div className="hidden sm:block absolute bottom-24 left-4 z-20">
                     <div className="px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-[#1B1B18]/10 text-xs font-bold text-[#1B1B18] flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-[#5C8200]" />
                       <span>{activeCard.chips[0].stat}</span>
@@ -843,28 +868,28 @@ export default function HomeClient() {
                   </div>
 
                   {/* 4. Compact "Why Us?" Mini-Card with 3 small ring stats (Section 5.6) */}
-                  <div className="absolute bottom-4 right-4 left-4 sm:left-auto sm:max-w-xs z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-2xl border border-white/40">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-xs font-extrabold uppercase tracking-wider text-[#1B1B18] flex items-center gap-1.5">
+                  <div className="absolute bottom-3 right-3 left-3 sm:left-auto sm:bottom-4 sm:right-4 sm:max-w-xs z-20 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-2xl border border-white/40">
+                    <div className="flex items-center justify-between mb-1.5 sm:mb-2">
+                      <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-[#1B1B18] flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5 text-[#5C8200]" />
                         Why Togher Group?
                       </span>
-                      <span className="text-[10px] font-bold uppercase text-[#523BA8] bg-[#E3DEFC] px-2 py-0.5 rounded-full">
+                      <span className="text-[9px] sm:text-[10px] font-bold uppercase text-[#523BA8] bg-[#E3DEFC] px-2 py-0.5 rounded-full">
                         Tier-1 Ready
                       </span>
                     </div>
-                    <div className="grid grid-cols-3 gap-2 text-center py-1">
-                      <div className="p-1.5 rounded-lg bg-[#DEEBC9]/50">
-                        <span className="block text-xs font-extrabold text-[#1B1B18]">100%</span>
-                        <span className="text-[9px] text-[#2F4500] font-bold">Vetted</span>
+                    <div className="grid grid-cols-3 gap-1.5 sm:gap-2 text-center py-1">
+                      <div className="p-1 sm:p-1.5 rounded-lg bg-[#DEEBC9]/50">
+                        <span className="block text-[11px] sm:text-xs font-extrabold text-[#1B1B18]">100%</span>
+                        <span className="text-[8px] sm:text-[9px] text-[#2F4500] font-bold">Vetted</span>
                       </div>
-                      <div className="p-1.5 rounded-lg bg-[#E3DEFC]/50">
-                        <span className="block text-xs font-extrabold text-[#1B1B18]">48h</span>
-                        <span className="text-[9px] text-[#523BA8] font-bold">SLA</span>
+                      <div className="p-1 sm:p-1.5 rounded-lg bg-[#E3DEFC]/50">
+                        <span className="block text-[11px] sm:text-xs font-extrabold text-[#1B1B18]">48h</span>
+                        <span className="text-[8px] sm:text-[9px] text-[#523BA8] font-bold">SLA</span>
                       </div>
-                      <div className="p-1.5 rounded-lg bg-[#F6F7F2]">
-                        <span className="block text-xs font-extrabold text-[#1B1B18]">Zero</span>
-                        <span className="text-[9px] text-[#8A8E82] font-bold">Dispute</span>
+                      <div className="p-1 sm:p-1.5 rounded-lg bg-[#F6F7F2]">
+                        <span className="block text-[11px] sm:text-xs font-extrabold text-[#1B1B18]">Zero</span>
+                        <span className="text-[8px] sm:text-[9px] text-[#8A8E82] font-bold">Dispute</span>
                       </div>
                     </div>
                   </div>
@@ -958,33 +983,33 @@ export default function HomeClient() {
           Two complementary rounded cards side-by-side
           ======================================================== */}
       <section className="px-4 sm:px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
           
           {/* Card A: For Main Contractors */}
-          <div className="p-8 sm:p-10 rounded-[24px] sm:rounded-[28px] bg-[#DEEBC9] border border-[#C7E36B]/60 flex flex-col justify-between shadow-sm relative overflow-hidden">
+          <div className="p-6 sm:p-10 rounded-[22px] sm:rounded-[28px] bg-[#DEEBC9] border border-[#C7E36B]/60 flex flex-col justify-between shadow-sm relative overflow-hidden">
             <div className="relative z-10">
-              <span className="inline-block px-3 py-1 rounded-full bg-white text-[#2F4500] text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
+              <span className="inline-block px-3 py-1 rounded-full bg-white text-[#2F4500] text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4 shadow-2xs">
                 For Employers & Contractors
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#1B1B18] tracking-tight mb-3">
+              <h3 className="text-xl sm:text-3xl font-bold text-[#1B1B18] tracking-tight mb-2 sm:mb-3 leading-snug">
                 Mobilise Verified Project Leadership
               </h3>
-              <p className="text-sm text-[#1B1B18]/75 leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm text-[#1B1B18]/75 leading-relaxed mb-5 sm:mb-6">
                 Need an experienced Project Director, MEP Lead, or 35-operative trades crew on-site with 48-hour turnarounds? We manage all compliance, certification and logistics.
               </p>
             </div>
 
-            <div className="relative z-10 pt-4 flex flex-wrap items-center gap-3">
+            <div className="relative z-10 pt-2 flex flex-col xs:flex-row items-stretch xs:items-center gap-3">
               <Link
                 href="/contact"
-                className="btn-pill btn-pill-dark text-sm py-3 px-6 shadow-md"
+                className="btn-pill btn-pill-dark text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 shadow-md w-full xs:w-auto"
               >
                 <span>Submit Requisition</span>
                 <ArrowUpRight className="w-4 h-4 text-[#C7E36B]" />
               </Link>
               <Link
                 href="/clients"
-                className="btn-pill btn-pill-white text-sm py-3 px-5"
+                className="btn-pill btn-pill-white text-xs sm:text-sm py-2.5 sm:py-3 px-5 w-full xs:w-auto"
               >
                 <span>Client Framework</span>
               </Link>
@@ -992,30 +1017,30 @@ export default function HomeClient() {
           </div>
 
           {/* Card B: For Candidates & Skilled Trades */}
-          <div className="p-8 sm:p-10 rounded-[24px] sm:rounded-[28px] bg-[#E3DEFC] border border-[#B9AEF0]/60 flex flex-col justify-between shadow-sm relative overflow-hidden">
+          <div className="p-6 sm:p-10 rounded-[22px] sm:rounded-[28px] bg-[#E3DEFC] border border-[#B9AEF0]/60 flex flex-col justify-between shadow-sm relative overflow-hidden">
             <div className="relative z-10">
-              <span className="inline-block px-3 py-1 rounded-full bg-white text-[#523BA8] text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
+              <span className="inline-block px-3 py-1 rounded-full bg-white text-[#523BA8] text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4 shadow-2xs">
                 For Engineers & Trades
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#1B1B18] tracking-tight mb-3">
+              <h3 className="text-xl sm:text-3xl font-bold text-[#1B1B18] tracking-tight mb-2 sm:mb-3 leading-snug">
                 Access Tier-1 International Roles
               </h3>
-              <p className="text-sm text-[#1B1B18]/75 leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm text-[#1B1B18]/75 leading-relaxed mb-5 sm:mb-6">
                 Take your career to leading infrastructure, commercial superstructures, and hyperscale data campus contracts across Ireland, the UK, Europe and Australia.
               </p>
             </div>
 
-            <div className="relative z-10 pt-4 flex flex-wrap items-center gap-3">
+            <div className="relative z-10 pt-2 flex flex-col xs:flex-row items-stretch xs:items-center gap-3">
               <Link
                 href="/candidates"
-                className="btn-pill bg-[#523BA8] text-white hover:bg-[#432F8E] text-sm py-3 px-6 shadow-md"
+                className="btn-pill bg-[#523BA8] text-white hover:bg-[#432F8E] text-xs sm:text-sm py-2.5 sm:py-3 px-5 sm:px-6 shadow-md w-full xs:w-auto"
               >
                 <span>Register with Togher</span>
                 <ArrowUpRight className="w-4 h-4 text-[#C7E36B]" />
               </Link>
               <Link
                 href="/vacancies"
-                className="btn-pill btn-pill-white text-sm py-3 px-5"
+                className="btn-pill btn-pill-white text-xs sm:text-sm py-2.5 sm:py-3 px-5 w-full xs:w-auto"
               >
                 <span>Search Live Jobs</span>
               </Link>
@@ -1031,50 +1056,50 @@ export default function HomeClient() {
           Clean pill form terminal inside a soft pale sage card
           ======================================================== */}
       <section className="px-4 sm:px-6 md:px-10">
-        <div className="rounded-[28px] sm:rounded-[32px] bg-[#1B1B18] text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden">
+        <div className="rounded-[22px] sm:rounded-[32px] bg-[#1B1B18] text-white p-6 sm:p-12 lg:p-16 relative overflow-hidden">
           <div className="max-w-3xl mx-auto text-center relative z-10">
             
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 text-[#C7E36B] text-xs font-semibold tracking-wider uppercase mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-white/10 text-[#C7E36B] text-[11px] sm:text-xs font-semibold tracking-wider uppercase mb-3 sm:mb-4">
               <span className="w-2 h-2 rounded-full bg-[#C7E36B] animate-pulse" />
               <span>Direct Recruitment Terminal</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-3 sm:mb-4 leading-tight">
               Start your <span className="text-[#C7E36B]">workforce deployment</span> today.
             </h2>
 
-            <p className="text-sm sm:text-base text-white/75 leading-relaxed mb-8 max-w-xl mx-auto">
+            <p className="text-xs sm:text-base text-white/75 leading-relaxed mb-6 sm:mb-8 max-w-xl mx-auto">
               Connect with our Dublin Headquarters or London Operations desk. Our directors review all requisitions within two business hours.
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4">
+            <div className="flex flex-col xs:flex-row items-stretch xs:items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/contact"
-                className="btn-pill bg-[#C7E36B] text-[#1B1B18] hover:bg-[#b5d74c] font-bold text-sm sm:text-base py-3.5 px-8 shadow-xl"
+                className="btn-pill bg-[#C7E36B] text-[#1B1B18] hover:bg-[#b5d74c] font-bold text-xs sm:text-base py-3 sm:py-3.5 px-6 sm:px-8 shadow-xl w-full xs:w-auto"
               >
                 <span>Open Direct Requisition</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
               <a
                 href="tel:+35319053800"
-                className="btn-pill bg-white/10 text-white hover:bg-white/20 border border-white/20 text-sm sm:text-base py-3.5 px-6"
+                className="btn-pill bg-white/10 text-white hover:bg-white/20 border border-white/20 text-xs sm:text-base py-3 sm:py-3.5 px-5 sm:px-6 w-full xs:w-auto"
               >
                 <Phone className="w-4 h-4 text-[#C7E36B]" />
                 <span>+353 (0)1 905 3800</span>
               </a>
             </div>
 
-            <div className="mt-10 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-6 text-xs text-[#8A8E82]">
+            <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] sm:text-xs text-[#8A8E82]">
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#C7E36B]" />
+                <CheckCircle2 className="w-4 h-4 text-[#C7E36B] shrink-0" />
                 Managing Director Steve Togher
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#C7E36B]" />
+                <CheckCircle2 className="w-4 h-4 text-[#C7E36B] shrink-0" />
                 Dublin 2 & London Desks
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-[#C7E36B]" />
+                <CheckCircle2 className="w-4 h-4 text-[#C7E36B] shrink-0" />
                 Full EU A1 Compliance
               </span>
             </div>

@@ -49,6 +49,14 @@ export function useScrollSkew() {
   const rafId = useRef<number>(0);
 
   const trackVelocity = useCallback(() => {
+    // Disable scroll skew on mobile & touch screens to prevent jitter
+    if (typeof window !== 'undefined' && (window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches)) {
+      if (wordmarkRef.current) {
+        wordmarkRef.current.style.transform = 'none';
+      }
+      return;
+    }
+
     const y = window.scrollY;
     velocity.current = (y - lastY.current) * 0.05;
     lastY.current = y;
@@ -205,9 +213,9 @@ export function ScrollableDossierStrip({
   return (
     <div className="relative w-full overflow-hidden my-6">
       {/* Reel Header / Controls */}
-      <div className="flex justify-between items-center flex-wrap gap-4 mb-4 px-1">
-        <div className="flex items-center gap-2.5">
-          <span className="text-base font-bold text-[#1B1B18] tracking-tight">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 mb-4 px-1">
+        <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
+          <span className="text-sm sm:text-base font-bold text-[#1B1B18] tracking-tight">
             {label}
           </span>
           <span className="px-2.5 py-0.5 rounded-full bg-[#E3DEFC] text-[#523BA8] text-[10px] font-bold uppercase tracking-wider">
@@ -216,18 +224,18 @@ export function ScrollableDossierStrip({
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 self-end sm:self-auto">
           <button
-            onClick={() => scrollBy(-360)}
+            onClick={() => scrollBy(-320)}
             aria-label="Scroll left"
-            className="btn-pill btn-pill-white text-xs py-1.5 px-3.5"
+            className="btn-pill btn-pill-white text-xs py-2 px-4 min-h-[38px] sm:min-h-[44px]"
           >
             ← PREV
           </button>
           <button
-            onClick={() => scrollBy(360)}
+            onClick={() => scrollBy(320)}
             aria-label="Scroll right"
-            className="btn-pill btn-pill-dark text-xs py-1.5 px-3.5"
+            className="btn-pill btn-pill-dark text-xs py-2 px-4 min-h-[38px] sm:min-h-[44px]"
           >
             NEXT →
           </button>
@@ -250,10 +258,11 @@ export function ScrollableDossierStrip({
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
         onMouseMove={handleMouseMove}
-        className="flex gap-5 overflow-x-auto select-none pb-4 scrollbar-none"
+        className="flex gap-4 sm:gap-5 overflow-x-auto select-none pb-4 scrollbar-none touch-pan-x"
         style={{
           scrollSnapType: isDragging ? 'none' : 'x mandatory',
           cursor: isDragging ? 'grabbing' : 'grab',
+          WebkitOverflowScrolling: 'touch',
         }}
       >
         {children}
@@ -290,7 +299,7 @@ export function DossierCard({
   summary,
   linkHref,
   linkText = 'Inspect Details ↗',
-  width = 'clamp(290px, 28vw, 360px)',
+  width = 'clamp(260px, 82vw, 360px)',
 }: DossierCardProps) {
   return (
     <article
@@ -304,7 +313,7 @@ export function DossierCard({
             src={imageSrc}
             alt={imageAlt}
             fill
-            sizes="400px"
+            sizes="(max-width: 640px) 85vw, 400px"
             className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#1B1B18]/80 backdrop-blur-md text-white text-[10px] font-bold">
@@ -325,7 +334,7 @@ export function DossierCard({
         </div>
 
         {/* Content Body */}
-        <div className="p-5">
+        <div className="p-4 sm:p-5">
           {subtitle && (
             <span className="text-[10px] uppercase font-bold tracking-wider text-[#8A8E82] block mb-1">
               {subtitle}

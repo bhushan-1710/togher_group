@@ -26,10 +26,10 @@ export default function AboutClient() {
       {/* ═══════════════════════════════════════════════════════
           COVER — Specification Header Block
       ═══════════════════════════════════════════════════════ */}
-      <section className="pt-8 sm:pt-10 pb-8 px-4 sm:px-6 md:px-10 relative border-b border-[#1B1B18]/8">
+      <section className="pt-6 sm:pt-10 pb-6 sm:pb-8 px-4 sm:px-6 md:px-10 relative border-b border-[#1B1B18]/8">
         {/* Top metadata row */}
-        <div className="flex justify-between items-center flex-wrap gap-4 mb-6">
-          <span className="text-[11px] font-semibold text-[#8A8E82] uppercase tracking-wider">
+        <div className="flex justify-between items-center flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <span className="text-[10px] sm:text-[11px] font-semibold text-[#8A8E82] uppercase tracking-wider">
             SPECIFICATION REF: TG-2025 // SEC-02 // CORPORATE DISCIPLINE
           </span>
           <LiveOperationalSignal text="ACTIVE · IRELAND & UK REGISTERED" />
@@ -40,12 +40,12 @@ export default function AboutClient() {
           ref={wordmarkRef}
           className="transition-transform duration-100 ease-out will-change-transform"
         >
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[#1B1B18] font-[var(--font-display)] leading-[1.05] mb-4">
+          <h1 className="text-[clamp(2.2rem,7.5vw,5.5rem)] font-bold tracking-tight text-[#1B1B18] font-[var(--font-display)] leading-[1.05] mb-3 sm:mb-4">
             About <span className="text-[#5C8200]">Togher</span> Group.
           </h1>
         </div>
 
-        <div className="mt-4 flex items-center gap-4 flex-wrap text-xs sm:text-sm font-semibold text-[#8A8E82]">
+        <div className="mt-3 sm:mt-4 flex items-center gap-3 sm:gap-4 flex-wrap text-xs sm:text-sm font-semibold text-[#8A8E82]">
           <span className="inline-flex items-center gap-1.5 text-[#5C8200] bg-[#DEEBC9] px-3 py-1 rounded-full uppercase tracking-wider text-xs">
             <ShieldCheck className="w-3.5 h-3.5" />
             Specialist Construction Recruitment
@@ -174,12 +174,12 @@ export default function AboutClient() {
       {/* ═══════════════════════════════════════════════════════
           LOG 03 — Geographic Scope & Counter
       ═══════════════════════════════════════════════════════ */}
-      <section className="py-12 sm:py-16 px-4 sm:px-6 md:px-10 max-w-[1480px] mx-auto">
+      <section className="py-10 sm:py-16 px-4 sm:px-6 md:px-10 max-w-[1480px] mx-auto">
         <EntryLabel n="LOG 03" label="Jurisdictions & Cross-Border Delivery" />
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mt-6 p-8 sm:p-10 rounded-[28px] bg-[#DEEBC9] border border-[#C7E36B]/60">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center mt-6 p-6 sm:p-10 rounded-[22px] sm:rounded-[28px] bg-[#DEEBC9] border border-[#C7E36B]/60">
           <div className="md:col-span-4">
-            <div className="text-6xl sm:text-7xl font-extrabold text-[#1B1B18] font-[var(--font-display)] leading-none">
+            <div className="text-5xl sm:text-7xl font-extrabold text-[#1B1B18] font-[var(--font-display)] leading-none">
               0{markets.count}
             </div>
             <div className="text-xs uppercase font-bold text-[#2F4500] tracking-wider mt-2">
@@ -187,24 +187,24 @@ export default function AboutClient() {
             </div>
           </div>
 
-          <div className="md:col-span-8 border-t md:border-t-0 md:border-l border-[#1B1B18]/12 pt-6 md:pt-0 md:pl-8">
+          <div className="md:col-span-8 border-t md:border-t-0 md:border-l border-[#1B1B18]/12 pt-5 md:pt-0 md:pl-8">
             <p className="text-sm sm:text-base text-[#1B1B18]/80 leading-relaxed mb-6">
               Togher Group connects organisations and personnel across <strong>Ireland, the United
               Kingdom, Europe, the USA, and Australia</strong>. We support Irish and UK main contractors
               delivering complex civil, data centre, pharmaceutical, and high-density residential works
               domestically and internationally.
             </p>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-3">
               <Link
                 href="/clients"
-                className="btn-pill btn-pill-white text-xs sm:text-sm py-2.5 px-5 shadow-xs"
+                className="btn-pill btn-pill-white text-xs sm:text-sm py-2.5 px-5 shadow-xs w-full xs:w-auto"
               >
                 <span>Client Framework</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </Link>
               <Link
                 href="/vacancies"
-                className="btn-pill btn-pill-dark text-xs sm:text-sm py-2.5 px-5 shadow-xs"
+                className="btn-pill btn-pill-dark text-xs sm:text-sm py-2.5 px-5 shadow-xs w-full xs:w-auto"
               >
                 <span>Inspect Live Vacancies</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-[#C7E36B]" />

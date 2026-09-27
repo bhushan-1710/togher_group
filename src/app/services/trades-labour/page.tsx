@@ -31,19 +31,19 @@ export default function TradesLabourPage() {
     <div className="w-full bg-white text-[#1B1B18] overflow-x-hidden relative min-h-screen pb-16">
       <GrainOverlay />
 
-      <section className="pt-8 sm:pt-10 pb-8 px-4 sm:px-6 md:px-10 relative border-b border-[#1B1B18]/8">
-        <div className="flex justify-between items-center flex-wrap gap-4 mb-6">
-          <span className="text-[11px] font-semibold text-[#8A8E82] uppercase tracking-wider">
+      <section className="pt-6 sm:pt-10 pb-6 sm:pb-8 px-4 sm:px-6 md:px-10 relative border-b border-[#1B1B18]/8">
+        <div className="flex justify-between items-center flex-wrap gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <span className="text-[10px] sm:text-[11px] font-semibold text-[#8A8E82] uppercase tracking-wider">
             SPECIFICATION REF: TG-2025 // SEC-03-B // TRADES &amp; LABOUR
           </span>
           <LiveOperationalSignal text="DISCIPLINE B · SITE MOBILISATION" />
         </div>
 
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[#1B1B18] font-[var(--font-display)] leading-[1.05] mb-4">
+        <h1 className="text-[clamp(2.2rem,7.5vw,5rem)] font-bold tracking-tight text-[#1B1B18] font-[var(--font-display)] leading-[1.05] mb-3 sm:mb-4">
           Trades &amp; <span className="text-[#523BA8]">Site Labour</span>.
         </h1>
 
-        <div className="mt-4 flex items-center gap-4 flex-wrap text-xs sm:text-sm font-semibold text-[#8A8E82]">
+        <div className="mt-3 sm:mt-4 flex items-center gap-3 sm:gap-4 flex-wrap text-xs sm:text-sm font-semibold text-[#8A8E82]">
           <span className="inline-flex items-center gap-1.5 text-[#523BA8] bg-[#E3DEFC] px-3 py-1 rounded-full uppercase tracking-wider text-xs">
             <HardHat className="w-3.5 h-3.5" />
             Verified Trades &amp; Gang Mobilisation
